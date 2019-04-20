@@ -11,16 +11,9 @@ namespace Literature
 {
   public class Startup
   {
-    public Startup(IHostingEnvironment env)
+    public Startup(IConfiguration configuration)
     {
-      var builder = new ConfigurationBuilder()
-        .SetBasePath(env.ContentRootPath)
-        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-      if (env.EnvironmentName == "Production")
-        builder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-      Configuration = builder.Build();
+      Configuration = configuration;
     }
 
     public IConfiguration Configuration { get; }
