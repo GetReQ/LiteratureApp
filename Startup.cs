@@ -15,10 +15,12 @@ namespace Literature
     {
       var builder = new ConfigurationBuilder()
         .SetBasePath(env.ContentRootPath)
-        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-      Configuration = builder.Build();// configuration;
+      if (env.EnvironmentName == "Production")
+        builder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+      Configuration = builder.Build();
     }
 
     public IConfiguration Configuration { get; }
