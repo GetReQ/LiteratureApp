@@ -64,7 +64,7 @@ namespace Literature.Controllers
       {
         ModelState.AddModelError("", "Unable to add publication.");
       }
-        return View(publication);
+      return View(publication);
     }
 
     // GET: Publications/Edit/5

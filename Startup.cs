@@ -1,4 +1,5 @@
-﻿using Literature.Models;
+﻿using Literature.Data;
+using Literature.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,8 +33,13 @@ namespace Literature
         services.AddDbContext<MyDatabaseContext>(options =>
                 options.UseSqlite("Data Source=localdatabase.db"));
 
+      var context = services.BuildServiceProvider().GetService<MyDatabaseContext>();
       // Automatically perform database migration
-      services.BuildServiceProvider().GetService<MyDatabaseContext>().Database.Migrate();
+      context.Database.Migrate();
+
+      //Apply seeding
+      DbInitialiser.Initialize(context);
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

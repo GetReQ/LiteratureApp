@@ -12,5 +12,15 @@ namespace Literature.Models
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
 
+    [Display(Name = "Publisher")]
+    public string Name
+    {
+      get { return ToString(); }
+    }
+                         
+    public override string ToString()
+    {
+      return $"{FirstName} {LastName}";
+    }
   }
 }

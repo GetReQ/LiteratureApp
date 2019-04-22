@@ -1,0 +1,53 @@
+@model IEnumerable<Literature.Models.Order>
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+  <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.OrderDate)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Publisher.Name)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.OrderPlaced)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.NumberOfItems)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var order in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => order.OrderDate)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => order.Publisher.Name)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => order.OrderPlaced)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => order.NumberOfItems)
+        </td>
+        <td>
+          <a asp-action="Edit" asp-route-id="@order.ID">Edit</a> |
+          <a asp-action="Details" asp-route-id="@order.ID">Details</a> |
+          <a asp-action="Delete" asp-route-id="@order.ID">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
