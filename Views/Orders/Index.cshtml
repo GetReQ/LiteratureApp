@@ -9,7 +9,7 @@
 <p>
   <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-condensed" style="border-collapse:collapse;">
   <thead>
     <tr>
       <th>
@@ -29,7 +29,7 @@
   <tbody>
     @foreach (var order in Model)
     {
-      <tr>
+      <tr class="accordion-toggle" data-toggle="collapse" data-target="#AA_@(order.ID)">
         <td>
           @Html.DisplayFor(modelItem => order.OrderDate)
         </td>
@@ -46,6 +46,29 @@
           <a asp-action="Edit" asp-route-id="@order.ID">Edit</a> |
           <a asp-action="Details" asp-route-id="@order.ID">Details</a> |
           <a asp-action="Delete" asp-route-id="@order.ID">Delete</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5" class="hiddenRow">
+          <div class="accordion-body collapse" id="AA_@(order.ID)">
+            @foreach (var item in order.OrderItems)
+            {
+              <dl class="dl-horizontal">
+                <dt>
+                  @Html.DisplayNameFor(modelItem => item.Publication.Title)
+                </dt>
+                <dd>
+                  @Html.DisplayFor(modelItem => item.Publication.Title)
+                </dd>
+                <dt>
+                  @Html.DisplayNameFor(modelItem => item.Publication.Language)
+                </dt>
+                <dd>
+                  @Html.DisplayFor(modelItem => item.Publication.Language)
+                </dd>
+              </dl>
+            }
+          </div>
         </td>
       </tr>
     }

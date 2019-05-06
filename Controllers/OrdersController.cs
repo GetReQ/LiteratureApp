@@ -21,6 +21,7 @@ namespace Literature.Controllers
     {
       return View(await _context.Orders
         .Include(o => o.OrderItems)
+        .ThenInclude(i => i.Publication)
         .Include(o => o.Publisher)
         .OrderByDescending(o => o.OrderDate)
         .ToListAsync());
@@ -36,6 +37,7 @@ namespace Literature.Controllers
 
       var orders = await _context.Orders
         .Include(o => o.OrderItems)
+        .ThenInclude(i => i.Publication)
         .Include(o => o.Publisher)
         .SingleOrDefaultAsync(o => o.ID == id);
       if (orders == null)
@@ -82,7 +84,7 @@ namespace Literature.Controllers
       }
 
       var order = await _context.Orders
-        .Include(o => o.OrderItems)
+        .Include(o => o.OrderItems.Select(i => i.Publication))
         .Include(o => o.Publisher)
         .SingleOrDefaultAsync(o => o.ID == id);
       if (order == null)

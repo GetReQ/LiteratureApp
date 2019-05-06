@@ -7,48 +7,46 @@
 <h2>Details</h2>
 
 <div>
-  <h4>Publisher</h4>
+  <h4>Order</h4>
   <hr />
-  <dl class="dl-horizontal">
-    <dt>
-      @Html.DisplayNameFor(model => model.Publisher.FirstName)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Publisher.FirstName)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.Publisher.LastName)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Publisher.LastName)
-    </dd>
-    <dt>
-      @Html.DisplayFor(model => model.OrderItems)
-    </dt>
-    <dd>
-      <table class="table">
+  <h5>Publisher: @Html.DisplayFor(model => model.Publisher.Name)</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.OrderItems.First().Publication.Title)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.OrderItems.First().Publication.Language)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.OrderItems.First().Publication.Code)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.OrderItems.First().Quantity)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model.OrderItems)
+      {
         <tr>
-          <th>Publication</th>
-          <th>Language</th>
-          <th>Quantity</th>
+          <td>
+            @Html.DisplayFor(modelItem => item.Publication.Title)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Publication.Language)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Publication.Code)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+          </td>
         </tr>
-        @foreach (var item in Model.OrderItems)
-        {
-          <tr>
-            <td>
-              @Html.DisplayFor(modelItem => item.Publication.ToString())
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.Publication.Language)
-            </td>
-            <td>
-              @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-          </tr>
-        }
-      </table>
-    </dd>
-  </dl>
+      }
+    </tbody>
+  </table>
 </div>
 <div>
   <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |

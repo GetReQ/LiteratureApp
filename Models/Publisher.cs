@@ -15,12 +15,12 @@ namespace Literature.Models
     [Display(Name = "Publisher")]
     public string Name
     {
-      get { return ToString(); }
+      get { return $"{FirstName} {LastName}"; }
     }
                          
     public override string ToString()
     {
-      return $"{FirstName} {LastName}";
+      return Name;
     }
   }
 }
