@@ -1,6 +1,7 @@
 using Literature.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,6 +64,7 @@ namespace Literature.Controllers
       {
         if (ModelState.IsValid)
         {
+          order.OrderDate = DateTime.UtcNow;
           _context.Add(order);
           await _context.SaveChangesAsync();
           return RedirectToAction("Index");
