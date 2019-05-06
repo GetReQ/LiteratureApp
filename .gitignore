@@ -8,7 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-localdatabase.db
+*.db
 
 # ignore appsettings configuration files
 **/appsettings.development.json

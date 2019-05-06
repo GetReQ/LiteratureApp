@@ -2,6 +2,7 @@
 
 @{
   ViewData["Title"] = "Details";
+  var orderText = Model.OrderPlaced ? "Cancel Order" : "Place Order";
 }
 
 <h2>Details</h2>
@@ -11,11 +12,8 @@
   <hr />
   <h5>Publisher: @Html.DisplayFor(model => model.Publisher.Name)</h5>
 
-  @if (!Model.OrderPlaced)
-  {
-  <a asp-action="Order" asp-route-id="@Model.ID">Place Order</a>
-  }
-
+  <a asp-action="Order" asp-route-id="@Model.ID">@(orderText)</a>
+  
   <table class="table">
     <thead>
       <tr>

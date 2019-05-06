@@ -106,7 +106,7 @@ namespace Literature.Controllers
         return NotFound();
 
       //update order status and redirect to index page
-      order.OrderPlaced = true;
+      order.OrderPlaced = !order.OrderPlaced;
       await _context.SaveChangesAsync();
       return RedirectToAction("Index");
     }
