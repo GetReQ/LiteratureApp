@@ -94,6 +94,23 @@ namespace Literature.Controllers
       return View(order);
     }
 
+    public async Task<IActionResult> Order(int? id)
+    {
+      if (id == null)
+        return NotFound();
+
+      var order = await _context.Orders
+        .SingleOrDefaultAsync(o => o.ID == id);
+
+      if (order == null)
+        return NotFound();
+
+      //update order status and redirect to index page
+      order.OrderPlaced = true;
+      await _context.SaveChangesAsync();
+      return RedirectToAction("Index");
+    }
+
     // POST: Orders/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]

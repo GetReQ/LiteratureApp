@@ -29,7 +29,7 @@ textarea {
 }
 
 .hiddenRow {
-  padding: 0 !important;
+  padding: 0;
 }
 
 /* Hide/rearrange for smaller screens */

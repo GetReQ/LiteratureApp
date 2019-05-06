@@ -10,6 +10,12 @@
   <h4>Order</h4>
   <hr />
   <h5>Publisher: @Html.DisplayFor(model => model.Publisher.Name)</h5>
+
+  @if (!Model.OrderPlaced)
+  {
+  <a asp-action="Order" asp-route-id="@Model.ID">Place Order</a>
+  }
+
   <table class="table">
     <thead>
       <tr>
